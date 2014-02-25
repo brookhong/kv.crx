@@ -1,0 +1,151 @@
+/* Copyright 2014 Google Inc. All Rights Reserved. */
+* {
+    box-sizing:border-box
+}
+body {
+    color:#222;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    margin:8px;
+    width:400px
+}
+a {
+    color:#11c;
+    text-decoration:none
+}
+a:hover {
+    text-decoration:underline
+}
+#form {
+    position:relative;
+    height:20px;
+    margin-bottom:8px
+}
+#query-field {
+    position:absolute;
+    height:100%;
+    width:200px
+}
+#button {
+    position:absolute;
+    left:200px;
+    margin-left:6px;
+    height:100%
+}
+#usage-tip,#status-box {
+    margin:16px 0
+}
+#meaning {
+    margin:8px 0
+}
+#usage-tip {
+    color:#888;
+    font-style:italic
+}
+#status-search-link {
+    margin-top:1em
+}
+#meaning {
+    border:1px solid #ccc;
+    max-height:300px;
+    overflow-x:hidden;
+    overflow-y:visible;
+    padding:6px;
+    text-overflow:ellipsis
+}
+.footer {
+    color:#888;
+    font-size:11px;
+    margin-top:8px;
+    text-align:center
+}
+.entry {
+    margin-bottom:16px
+}
+.headword-box {
+    margin-bottom:6px
+}
+.headword {
+    font-size:16px;
+    font-weight:bold;
+    vertical-align:middle
+}
+.audio {
+    background-image:url('data:image/png;
+    base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcUlEQVQ4y2P4//8/AyUYQhAH3gNxA7IAIQPmo/H3g/QA8XkgFiBkwHyoYnRQABVfj88AmGZcTuuHyjlgMwBZM7IE3NlQGhQe65EN+I8Dw8MLGgYoFpFqADK/YUAMwOsFigORatFIlYRElaRMWmaiBAMAp0n+3U0kqkAAAAAASUVORK5CYII=');
+    background-position:center center;
+    cursor:pointer;
+    display:inline-block;
+    margin-left:6px;
+    opacity:0.5;
+    width:16px;
+    height:16px;
+    vertical-align:middle
+}
+.audio:hover {
+    opacity:1
+}
+.poss {
+    font-style:italic
+}
+.pos:not(:last-of-type):after {
+    content:","
+}
+.morph-units {
+    color:#888
+}
+.description:after {
+    content:":"
+}
+.word-form {
+    font-weight:bold
+}
+.word-form:not(:last-of-type):after {
+    content:";
+    ";
+    font-weight:normal
+}
+.senses,.subsenses {
+    margin:6px 0 12px;
+    padding-left:30px
+}
+.subsenses {
+    margin:0
+}
+.nym:first-of-type:before {
+    color:#888;
+    content:"synonyms: ";
+    font-style:italic
+}
+.nym:not(:last-of-type):after {
+    content:","
+}
+.web-definitions:not(:first-of-type):before {
+    content:"";
+    display:block;
+    border-top:1px solid #ddd;
+    margin:24px -6px 0;
+    padding:6px 6px 0
+}
+.section-name {
+    color:#888;
+    font-size:16px;
+    margin-bottom:12px
+}
+.powered-by {
+    background-color:#eee;
+    padding:6px;
+    margin:24px -6px -6px
+}
+.tran-summary {
+    margin-bottom:32px
+}
+.tran-summary .headword {
+    font-weight:normal
+}
+.tran-attribution {
+    color:#888
+}
+.tran-terms {
+    margin:0
+}
