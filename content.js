@@ -1,4 +1,3 @@
-/* Copyright 2011 Google Inc. All Rights Reserved. */
 (function () {
     var d, h = function (a) {
             return a.replace(/^\s+|\s+$/g, "")

@@ -1,4 +1,3 @@
-/* Copyright 2011 Google Inc. All Rights Reserved. */
 (function () {
     var c = 0,
         d = null,
@@ -22,27 +21,28 @@
             }, p)
         }, p = function (a) {
             if (a.eventKey == c) {
-                if (a.html) {
-                    m.innerHTML = a.html;
-                    var b = m.querySelectorAll(".audio");
-                    for (a = 0; a < b.length; a++) {
-                        var q = b[a],
-                            l = document.createElement("audio");
-                        l.a = !0;
-                        l.src = q.getAttribute("data-url");
-                        q.addEventListener("click", l.play.bind(l), !1)
-                    }
-                    b = m.querySelectorAll(".nym-link");
-                    for (a = 0; a < b.length; a++) b[a].addEventListener("click", function () {
-                        e.value = this.title ? this.title : this.innerHTML;
-                        r();
-                        return !1
-                    }, !1);
-                    b = m.querySelectorAll('a:not([class="nym-link"])');
-                    for (a = 0; a < b.length; a++) n(b[a]);
-                    f.style.display = "none";
-                    m.style.display = "block"
-                } else g.innerHTML = "No definition found.", f.style.display = "block",
+                //if (a.html) {
+                    //m.innerHTML = a.html;
+                    //var b = m.querySelectorAll(".audio");
+                    //for (a = 0; a < b.length; a++) {
+                        //var q = b[a],
+                            //l = document.createElement("audio");
+                        //l.a = !0;
+                        //l.src = q.getAttribute("data-url");
+                        //q.addEventListener("click", l.play.bind(l), !1)
+                    //}
+                    //b = m.querySelectorAll(".nym-link");
+                    //for (a = 0; a < b.length; a++) b[a].addEventListener("click", function () {
+                        //e.value = this.title ? this.title : this.innerHTML;
+                        //r();
+                        //return !1
+                    //}, !1);
+                    //b = m.querySelectorAll('a:not([class="nym-link"])');
+                    //for (a = 0; a < b.length; a++) n(b[a]);
+                    //f.style.display = "none";
+                    //m.style.display = "block"
+                //} else g.innerHTML = "No definition found.", f.style.display = "block",
+                g.innerHTML = a.meaningObj.meaningText;
                 h.href = "http://www.google.com/search?q=" + a.sanitizedQuery, h.innerHTML = 'Search the web for "' + a.sanitizedQuery + '" &raquo;', h.style.display = "block";
                 d.disabled = !1
             }
@@ -54,7 +54,7 @@
         k = document.getElementById("usage-tip"),
         m = document.getElementById("meaning");
     k.display = "block";
-    k.innerText = "Tip: Select text on any webpage, then click the Google Dictionary button to view the definition of your selection.";
+    k.innerText = "Tip: Select text on any webpage, then click the KV Dictionary button to view the definition of your selection.";
     document.getElementById("year").innerText = (new Date).getFullYear();
     n(h);
     n(document.getElementById("options-link"));

@@ -1,7 +1,6 @@
-/* Copyright 2011 Google Inc. All Rights Reserved. */
 (function () {
     var f = "\" ' ( ) , - . / 1 2 : ? a about and are as be but com for from have i in is it like may more my next not of on search that the this to was when with you your".split(" "),
-        m = !1,
+        m = !0,
         p = {}, q = {}, r = 0,
         s = -1,
         v = -1,
@@ -26,7 +25,7 @@
                 })
         }, E = function (a, b, c) {
             if ("fetch_raw" != a.type && "fetch_html" != a.type) return !1;
-            _gaq && _gaq.push(["_trackEvent", "lookup", a.type]);
+            //_gaq && _gaq.push(["_trackEvent", "lookup", a.type]);
             - 1 != s && v != a.instanceId && chrome.tabs.sendMessage(s, {
                 type: "hide",
                 instanceId: v
@@ -47,6 +46,30 @@
                         callback: c,
                         incognito: !1
                     };
+                    //g = JSON.parse('{"eventKey":6,"sanitizedQuery":"prevent","meaningObj":{"type":"translation","meaningText":"预防, 防止, 避免","attribution":"Translated from English","srcLang":"en","audio":"https://ssl.gstatic.com/dictionary/static/sounds/de/0/prevent.mp3","moreUrl":"http://translate.google.com/translate_t?source=dict-chrome-ex&sl=en&tl=zh-CN&q=prevent","prettyQuery":"prevent"},"showOptionsTip":false}');
+                    var qx = new XMLHttpRequest;
+                    qx.open("POST", "http://localhost:8080/query", !0);
+                    qx.onreadystatechange = function () {
+                        if (4 == qx.readyState) {
+                            g = {
+                                eventKey: a.eventKey,
+                                sanitizedQuery: b.sanitizedQuery,
+                                meaningObj: {
+                                    'type': "translation",
+                                    'meaningText': "<pre>"+qx.responseText+"</pre>",
+                                    'attribution': "Translated from English",
+                                    'scrLang': "en",
+                                    'audio':"https://ssl.gstatic.com/dictionary/static/sounds/de/0/"+b.sanitizedQuery+".mp3",
+                                    'moreUrl':"http://translate.google.com/translate_t?source=dict-chrome-ex&sl=en&tl=zh-CN&q="+b.sanitizedQuery,
+                                    'prettyQuery':b.sanitizedQuery
+                                },
+                                showOptionsTip: 0
+                            };
+                            c(g);
+                        }
+                    };
+                    qx.send("word="+d);
+                    /*
                     B(d, p.language, function (a) {
                         b.dictRes = a;
                         C(b)
@@ -73,6 +96,7 @@
                             })) : C(b))
                         })
                     })
+                   */
                 };
             if (m) e();
             else {
@@ -88,7 +112,9 @@
                 k(0)
             }
             return !0
-        }, B = function (a, b, c) {
+        },
+        /*
+        B = function (a, b, c) {
             a = {
                 path: "dictionaryextension/v1/knowledge/search",
                 params: {
@@ -114,7 +140,8 @@
                 a.webDefinitions && (a.hasWebDefinitions = !0);
                 c(a)
             })
-        }, D = function (a, b, c) {
+        }, */
+        D = function (a, b, c) {
             var d = new XMLHttpRequest;
             d.open("GET", "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=" + b + "&tl=" + p.language + "&q=" + encodeURIComponent(a), !0);
             d.onreadystatechange = function () {
@@ -127,6 +154,7 @@
             };
             d.send()
         },
+        /*
         C = function (a) {
             a.numResponses++;
             if (4 == a.numResponses) {
@@ -198,7 +226,8 @@
                 attribution: "Translated from " + d,
                 srcLang: a.src
             }
-        }, F = function (a, b) {
+        },
+        F = function (a, b) {
             for (var c = b.split("."), d = 0; d < c.length; d++) {
                 var e =
                     c[d];
@@ -213,9 +242,11 @@
                 } else a = a[e]; if (!a) return null
             }
             return a
-        }, K = function (a) {
+        },
+        K = function (a) {
             return "//" == a.substr(0, 2) ? "https:" + a : a
-        }, G = function (a) {
+        },
+        G = function (a) {
             if (!a || a.error) return null;
             var b = null,
                 c = null;
@@ -236,7 +267,8 @@
             b = c.meaningText;
             c.meaningText = b.charAt(0).toUpperCase() + b.slice(1);
             return c
-        }, I = function (a, b, c) {
+        },
+        I = function (a, b, c) {
             var d = H(a, !1);
             if (!d) return "";
             b && (d.audio = b);
@@ -244,7 +276,8 @@
             a.moreUrl = c;
             a.hasDict = Boolean(a.dict) && a.dict.length;
             return q.browser_action_tran(a)
-        }, J = function (a, b) {
+        },
+        J = function (a, b) {
             if (!a || a.error) return "";
             a.moreUrl = b;
             a.makeAudioUrl =
@@ -262,7 +295,9 @@
                 }
             };
             return q.browser_action_dict(a)
-        }, L = function (a) {
+        },
+       */
+        L = function (a) {
             var b = {};
             b.language = a.language || "en";
             var c = function (c, d) {
@@ -287,16 +322,17 @@
                 c(a["word-history"])
             });
             return !0
-        }, N = function (a, b) {
+        },
+        N = function (a, b) {
             var c = new XMLHttpRequest;
             c.open("GET", a);
             c.onreadystatechange = function () {
                 if (4 == c.readyState) return 200 == c.status ? b(c.responseText) : b(null)
             };
             c.send()
-        }, O = function () {
-            var a =
-                window.localStorage.options,
+        },
+        O = function () {
+            var a = window.localStorage.options,
                 b = {};
             a && (b = JSON.parse(a));
             p = L(b);
@@ -314,20 +350,20 @@
     window["gdx.updateOptions"] = function () {
         p = JSON.parse(window.localStorage.options)
     };
-    window.initBackgroundPageAsync = function (a) {
-        var b = function () {
-            2 > Object.keys(q).length || (m = !0, a && a())
-        };
-        N("templates/browser_action_dict.html", function (a) {
-            q.browser_action_dict = Mustache.compile(a);
-            b()
-        });
-        N("templates/browser_action_tran.html", function (a) {
-            q.browser_action_tran = Mustache.compile(a);
-            b()
-        })
-    };
-    window.initBackgroundPage = O;
+    //window.initBackgroundPageAsync = function (a) {
+        //var b = function () {
+            //2 > Object.keys(q).length || (m = !0, a && a())
+        //};
+        //N("templates/browser_action_dict.html", function (a) {
+            //q.browser_action_dict = Mustache.compile(a);
+            //b()
+        //});
+        //N("templates/browser_action_tran.html", function (a) {
+            //q.browser_action_tran = Mustache.compile(a);
+            //b()
+        //})
+    //};
+    //window.initBackgroundPage = O;
     var P = P || !1;
     "undefined" != typeof P && P || O();
 })();

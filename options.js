@@ -1,8 +1,7 @@
-/* Copyright 2011 Google Inc. All Rights Reserved. */
 (function () {
     var d, e, f, g, h, k, l, m, n, q, r, s, t, u, v, w, y = function () {
             var a = {};
-            a.language = f.options[f.selectedIndex].value;
+            //a.language = f.options[f.selectedIndex].value;
             a.popupDblclick = g.checked ? "true" : "false";
             a.popupSelect = l.checked ? "true" : "false";
             a.popupDblclickKey = k.options[k.selectedIndex].value;
@@ -24,7 +23,7 @@
         }, E = function () {
             x(!1);
             var a = JSON.parse(window.localStorage.options);
-            z(f, a.language);
+            //z(f, a.language);
             g.checked = "true" == a.popupDblclick;
             A();
             l.checked = "true" == a.popupSelect;
@@ -93,7 +92,7 @@
     (function () {
         d = document.getElementById("save_button");
         e = document.getElementById("reset_button");
-        f = document.getElementById("language_selector");
+        //f = document.getElementById("language_selector");
         g = document.getElementById("popup_dblclick_checkbox");
         h = document.getElementById("popup_dblclick_text");
         k = document.getElementById("popup_dblclick_key");
